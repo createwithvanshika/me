@@ -3,10 +3,15 @@
    ═══════════════════════════════════════════════════════════ */
 'use strict';
 
+const TOPMATE_LINKS = {
+  profile: 'https://topmate.io/createwithvanshika',
+  discovery: 'https://topmate.io/createwithvanshika/discovery-call',
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => { document.body.classList.add('loaded'); }, 100);
   setTimeout(() => {
-    document.querySelectorAll('.hero__line, .hero__eyebrow').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.hero__line, .hero__eyebrow, .hero__sub, .hero__actions').forEach(el => el.classList.add('visible'));
   }, 300);
   initNav();
   initScrollReveal();
@@ -284,13 +289,10 @@ function initPackageBuilder() {
 
     totalBar.classList.add('visible');
 
-    /* ── Mailto CTA ── */
-    const subject  = encodeURIComponent('Package Enquiry — ' + PLAN_PILL[selectedPlan]);
-    const bodyText = ['Hi Vanshika,', '', "I'd like to discuss the following package:"]
-      .concat(items.map(i => '  • ' + i))
-      .concat(['', 'Estimated Total: ₹' + total.toLocaleString('en-IN') + (selectedPlan === 'starter' && items.some(i => i.includes('Repurposing')) ? ' (repurposing price TBD)' : ''), '', 'Looking forward to hearing from you!'])
-      .join('\n');
-    finalCTA.href = 'mailto:vanshika@createwithvanshika.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(bodyText);
+    /* ── Paid discovery CTA: selected packages are qualified through Topmate first. ── */
+    const packageSource = encodeURIComponent(selectedPlan + '-' + items.length + '-items');
+    finalCTA.textContent = 'Book Paid Discovery';
+    finalCTA.href = TOPMATE_LINKS.discovery + '?utm_source=website&utm_medium=package_builder&utm_campaign=' + packageSource;
   }
 
   /* ── Smart upgrade hint ── */
