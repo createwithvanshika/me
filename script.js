@@ -5,7 +5,7 @@
 
 const TOPMATE_LINKS = {
   profile: 'https://topmate.io/createwithvanshika',
-  discovery: 'https://topmate.io/createwithvanshika/discovery-call',
+  discovery: 'https://topmate.io/createwithvanshika/2012286?utm_source=public_profile&utm_campaign=createwithvanshika',
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -118,8 +118,8 @@ function initSmoothScroll() {
    UPGRADE HINT LOGIC:
    If Starter + reelcovers (₹5k) + storyhighlights (₹4k) = ₹33,000
    → ₹33k > ₹30k Growth → "💡 Tip: Adding Reel Covers + Story Highlights
-     brings your total to ₹33,000 — you could get the Growth Plan for
-     ₹30,000 and have both included."
+     brings the total to ₹33,000 — the Growth Plan gives the client
+     stronger value at ₹30,000 with both included."
 
    If Starter + reelcovers + storyhighlights + repurpose > ₹35k
    → suggest Premium instead
@@ -292,7 +292,7 @@ function initPackageBuilder() {
     /* ── Paid discovery CTA: selected packages are qualified through Topmate first. ── */
     const packageSource = encodeURIComponent(selectedPlan + '-' + items.length + '-items');
     finalCTA.textContent = 'Book Paid Discovery';
-    finalCTA.href = TOPMATE_LINKS.discovery + '?utm_source=website&utm_medium=package_builder&utm_campaign=' + packageSource;
+    finalCTA.href = TOPMATE_LINKS.discovery + '&utm_medium=package_builder&utm_campaign=' + packageSource;
   }
 
   /* ── Smart upgrade hint ── */
@@ -305,13 +305,13 @@ function initPackageBuilder() {
 
       /* If Starter + Reel Covers alone already = ₹29k — nudge toward Growth at ₹30k */
       if (hasReelCovers && !hasStories && currentTotal >= 29000) {
-        showHint('You\'re at <strong>₹' + currentTotal.toLocaleString('en-IN') + '</strong> on Starter + Reel Covers. The <strong>Growth Plan at ₹30,000/mo</strong> includes Reel Covers + 4 more posts/month. Worth considering! 👀');
+        showHint('This selection reaches <strong>₹' + currentTotal.toLocaleString('en-IN') + '</strong> with Starter + Reel Covers. The <strong>Growth Plan at ₹30,000/mo</strong> includes Reel Covers plus 4 more posts/month, making it a stronger client route. 👀');
         return;
       }
 
       /* If Starter + Reel Covers + Story Highlights → ₹33k > Growth ₹30k */
       if (hasReelCovers && hasStories && currentTotal >= 30000) {
-        showHint('Your current selection comes to <strong>₹' + currentTotal.toLocaleString('en-IN') + '</strong>. The <strong>Growth Plan (₹30,000/mo)</strong> already includes Reel Covers and gives you more posts — a smarter deal for almost the same spend. 💡');
+        showHint('This selection comes to <strong>₹' + currentTotal.toLocaleString('en-IN') + '</strong>. The <strong>Growth Plan (₹30,000/mo)</strong> already includes Reel Covers and adds more posts, making it the cleaner route for the client. 💡');
         return;
       }
     }
@@ -322,7 +322,7 @@ function initPackageBuilder() {
 
       /* Growth + Story Highlights = ₹34k — nudge toward Premium ₹35k */
       if (hasStories && currentTotal >= 33000) {
-        showHint('You\'re at <strong>₹' + currentTotal.toLocaleString('en-IN') + '</strong> on Growth + Story Highlights. The <strong>Premium Plan at ₹35,000/mo</strong> includes Story Highlights + Content Repurposing + more Reels. Just ₹' + (35000 - currentTotal).toLocaleString('en-IN') + ' more for the full package! 🚀');
+        showHint('This selection reaches <strong>₹' + currentTotal.toLocaleString('en-IN') + '</strong> with Growth + Story Highlights. The <strong>Premium Plan at ₹35,000/mo</strong> includes Story Highlights, Content Repurposing, and more Reels for ₹' + (35000 - currentTotal).toLocaleString('en-IN') + ' more. 🚀');
         return;
       }
     }
